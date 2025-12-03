@@ -1,0 +1,27 @@
+{
+  "name": "avaliacao_etapa2",
+  "version": "1.0.0",
+  "description": "Template para a avaliação Etapa 2 - Programação Web II",
+  "homepage": "https://github.com/ADS-IFMA/avaliacao_etapa2#readme",
+  "bugs": {
+    "url": "https://github.com/ADS-IFMA/avaliacao_etapa2/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ADS-IFMA/avaliacao_etapa2.git"
+  },
+  "license": "ISC",
+  "author": "Bruno Vicente",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "mysql2": "^3.15.3",
+    "sequelize": "^6.37.7"
+  }
+}
