@@ -1,23 +1,23 @@
-import Sequelize from 'sequelize'
-import dotenv from 'dotenv'
-dotenv.config()
+import sqlite3 from "sqlite3";
 
-const DB_NAME = process.env.DB_NAME
-const DB_USER = process.env.DB_USER
-const DB_PASSWORD = process.env.DB_PASSWORD
-const DB_HOST = process.env.HOST
-const DB_DIALECT = process.env.DB_DIALECT
+const db = new sqlite3.Database("banco.db");
 
-const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD,{
-    host: DB_HOST,
-    dialect: DB_DIALECT,
-    timezone: '-03:00',
-})
+db.run(`
+  CREATE TABLE IF NOT EXISTS cursos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    descricao TEXT,
+    horas INTEGER
+  )
+`);
 
-sequelize.authenticate().then(function (){
-    console.log('Conectado ao banco com sucesso ao '+DB_NAME+'!');
-}).catch(function (error) {
-    console.log('Falha na conexão: '+error);
-})
+db.run(`
+  CREATE TABLE IF NOT EXISTS alunos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT,
+    email TEXT,
+    cursos_id INTEGER,
+    FOREIGN KEY (cursos_id) REFERENCES cursos(id)
+  )
+`);
 
-export default {Sequelize, sequelize}
+export default db;
