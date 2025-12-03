@@ -1,22 +1,11 @@
-import express from 'express'
-import cors from 'cors'
-import dotenv from 'dotenv'
+import express from "express";
+import cursos from "./routes/cursos.js";
+import alunos from "./routes/alunos.js";
 
-dotenv.config()
+const app = express();
+app.use(express.json());
 
-const app = express()
-const porta = process.env.PORTA
+app.use("/cursos", cursos);
+app.use("/alunos", alunos);
 
-app.use(cors())
-app.use(express.json())
-
-app.get('/', (req, res) => {
-  res.send('Api Funcionando!')
-})
-
-import teste from './routes/teste.js'
-app.use('/teste', teste)
-
-app.listen(porta, () => {
-  console.log(`Servidor rodando em http://localhost:${porta}`)
-})
+app.listen(3000, () => console.log("API rodando na porta 3000"));
